@@ -1,0 +1,501 @@
+Experiment 1
+
+
+1.	AIM
+To implement a fundamental client–server model and analyze the Hypertext Transfer Protocol (HTTP) request and response cycle.
+2.	OBJECTIVE
+•	To establish a local HTTP server using Python within the VS Code environment.
+•	To initiate a request from a web browser (Client) to the local server.
+•	To inspect and record HTTP transaction metadata, including methods, status codes, and header fields using Browser Developer Tools.
+
+3.	THEORY
+The Client–Server model is a distributed application structure that partitions tasks between the provider of a resource or service (the server) and the service requester (the client).
+•	HTTP (Hypertext Transfer Protocol): An application-layer protocol used for transmitting hypermedia documents. It follows a request-response pattern.
+•	Request Method: Indicates the desired action to be performed (e.g., GET for retrieving data).
+•	Status Codes: Issued by the server to indicate the outcome of the request (e.g., 200 OK for success, 404 Not Found for missing resources).
+•	Headers: Key-value pairs that provide essential metadata about the request or the response content.
+
+4.	CODE
+A.	Resource File (index.html)
+Create this file in your VS Code workspace to serve as the requested content. HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+<meta charset="UTF-8">
+<title>Client-Server Experiment</title>
+</head>
+<body>
+<h1>Local Server Connection Successful</h1>
+<p>Data transmitted via HTTP/1.1</p>
+</body>
+</html>
+
+
+B.	Server Command (VS Code Terminal)
+Execute the following command in the integrated terminal to initialize the server: Bash python -m http.server 8000
+
+
+5.	OUTPUT
+Upon navigating to http://localhost:8000 in the browser, the following data was captured via the Network Tab in Developer Tools:
+ 
+ 
+ 
+Experiment 2
+
+
+1.	AIM
+To design and develop a structured static webpage using HTML5 semantic elements, multimedia, and user-input forms.
+2.	OBJECTIVE
+•	To implement a semantic document structure using HTML5 tags.
+•	To incorporate common web elements such as headings, paragraphs, images, lists, and hyperlinks.
+•	To create a functional contact form with input validation.
+•	To apply CSS3 for basic layout styling and modern UI presentation.
+3.	THEORY
+HTML5 (Hypertext Markup Language) is the standard markup language for documents designed to be displayed in a web browser.
+•	Semantic Elements: Tags like <header>, <main>, <section>, and <footer> clearly describe their meaning to both the browser and the developer.
+•	Input Types: HTML5 introduces specific attributes like type="email" which provide built-in validation.
+•	Multimedia: Images are embedded using the <img> tag or SVG (Scalable Vector Graphics) for high-quality, code-based visuals.
+•	Hyperlinks: The <a> (anchor) tag is used to connect different web resources via the href attribute.
+4.	CODE
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Professional Webpage</title>
+<style>
+ 
+body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: auto; padding: 20px; }
+header { border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
+.hero-img { width: 100%; height: 200px; background: #f0f0f0; border: 1px solid #ccc;display: flex; align-items: center; justify-content: center; } form { background: #f4f4f4; padding: 20px; border-radius: 8px; }
+.input-group { margin-bottom: 15px; } label { display: block; font-weight: bold; } input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; } button { background: #007bff; color: white; padding: 10px 15px; border: none; cursor: pointer; }
+</style>
+</head>
+<body>
+<header>
+<h1>Web Development Portfolio</h1>
+</header>
+
+
+<main>
+<section>
+<h2>About Me</h2>
+<p>This is a static webpage created to demonstrate HTML5 capabilities.</p>
+<div class="hero-img"> [Image Placeholder] </div>
+</section>
+
+
+<section>
+<h2>Skills & Tools</h2>
+<ul>
+<li>HTML5 Semantic Tags</li>
+<li>CSS3 Styling</li>
+<li>Client-Side Validation</li>
+ 
+</ul>
+</section>
+
+
+<section>
+<h2>Contact Us</h2>
+<form>
+<div class="input-group">
+<label>Name:</label>
+<input type="text" name="name" required>
+</div>
+<div class="input-group">
+<label>Email:</label>
+<input type="email" name="email" required>
+</div>
+<div class="input-group">
+<label>Message:</label>
+<textarea name="message" required></textarea>
+</div>
+<button type="submit">Submit</button>
+</form>
+</section>
+</main>
+</body>
+</html>
+
+
+
+5.	OUTPUT
+ 
+A. Layout Description
+The resulting webpage features a clean, centered layout. The header contains the primary title, followed by an "About" section featuring a placeholder image. The skills are presented in an unordered list, and the bottom section contains a grey-shaded contact form.
+ 
+Experiment 3
+
+
+1.	AIM
+To demonstrate the use of the Node.js fs (File System) module for handling file paths and performing read, write, and close operations.
+2.	OBJECTIVE
+•	To understand the difference between synchronous and asynchronous file operations.
+•	To implement code that creates (writes), reads, and successfully closes a file.
+•	To manage file paths effectively using the Node.js environment.
+3.	THEORY
+The Node.js File System (fs) module allows you to work with the file system on your computer.
+•	fs.writeFile(): Used to asynchronously write data to a file, replacing the file if it already exists.
+•	fs.readFile(): Used to read the content of a file. It requires an encoding type (like 'utf8') to return a string instead of a Buffer.
+•	fs.open() & fs.close(): Used for more granular control. Opening a file creates a "File Descriptor" (an integer), which must be closed to prevent memory leaks and file locking.
+•	File Paths: Node.js uses relative paths (e.g., ./test.txt) or absolute paths to locate files within the workspace.
+4.	CODE
+Create a file named file_ops.js in VS Code and paste the following code:
+// 1. IMPORT: This line tells Node.js to use the File System module const fs = require('fs');
+
+// 2. WRITE: Demonstrates how to write to a file fs.writeFile('message.txt', 'Learning Node.js File System!', (err) =>
+{ if (err) throw err; console.log('File has been written!');
+ 
+// 3. READ: Demonstrates how to read the file fs.readFile('message.txt', 'utf8', (err, data) => { if (err) throw err; console.log('Read from file: '
++ data);
+
+
+// 4. OPEN/CLOSE: Demonstrates opening and closing a file fs.open('message.txt', 'r', (err, fd) => { if (err) throw err; console.log('File opened successfully.');
+
+// This specifically closes the file fs.close(fd, (err) => { if (err) throw err; console.log('File closed successfully.');
+});
+});
+});
+});
+5.	OUTPUT
+A.	Execution Steps (In VS Code Terminal)
+1.	Ensure Node.js is installed (node -v).
+Run the script: node file_ops.js
+2.	
+B.	Observed Console Output
+
+
+PS D:\WEB TECHNOLOGY\EXPERIMENT 3> node file_ops.js File has been written!
+Read from file: Learning Node.js File System! File opened successfully.
+File closed successfully.
+ 
+ 
+ 
+Experiment 4
+
+
+1.	AIM
+To develop a PHP program that inserts user data into a MySQL database table and retrieves the data to display it in a structured tabular format on the browser.
+2.	OBJECTIVE
+•	To establish a connection between PHP and a MySQL database using the mysqli extension.
+•	To implement an HTML form for data entry.
+•	To execute SQL INSERT queries to store data.
+•	To execute SQL SELECT queries to fetch and render data in an HTML table.
+3.	THEORY
+PHP interacts with databases (typically MySQL) to create dynamic, data-driven websites.
+•	Connection: The mysqli_connect() function initializes a connection between the script and the database server.
+•	Data Insertion: Data sent via the POST method from an HTML form is captured in PHP and sent to the database using an INSERT INTO SQL statement.
+•	Data Retrieval: The SELECT statement is used to fetch rows. PHP loops through these rows using mysqli_fetch_assoc() to display them inside <table>, <tr>, and <td> tags.
+4.	CODE
+A.	Database Setup (SQL)
+Before running the PHP script, the following table must exist in the database: CREATE DATABASE lab_db;
+USE lab_db;
+
+
+CREATE TABLE students ( id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL, email VARCHAR(50) NOT NULL, course VARCHAR(50) NOT NULL
+ 
+);
+
+
+B.	PHP Implementation (manage_students.php)
+<?php
+// 1. Database Configuration
+$host = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "lab_db";
+
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+
+
+if (!$conn) { die("Connection failed: " . mysqli_connect_error());
+}
+
+
+// 2. Handle Data Insertion if (isset($_POST['submit'])) {
+$name = $_POST['name'];
+$email = $_POST['email'];
+$course = $_POST['course'];
+
+
+$sql = "INSERT INTO students (name, email, course) VALUES ('$name', '$email', '$course')";
+
+
+if (mysqli_query($conn, $sql)) { echo "<p style='color:green;'>Record added successfully!</p>";
+} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn); }
+ 
+}
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Management</title>
+<style> table { width: 100%; border-collapse: collapse; margin-top: 20px; } table, th, td { border: 1px solid black; padding: 8px; text-align: left; } th { background- color: #f2f2f2; } form { margin-bottom: 30px; background: #eee; padding: 15px; width: 300px; } </style>
+</head>
+<body>
+
+
+<h2>Insert Student Data</h2>
+<form method="POST">
+Name: <input type="text" name="name" required><br><br> Email: <input type="email" name="email" required><br><br> Course: <input type="text" name="course" required><br><br>
+<input type="submit" name="submit" value="Insert Data">
+</form>
+
+
+<h2>Registered Students</h2>
+<table>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Course</th>
+ 
+</tr>
+<?php
+// 3. Display Data
+$result = mysqli_query($conn, "SELECT * FROM students"); while ($row = mysqli_fetch_assoc($result)) { echo "<tr>
+<td>{$row['id']}</td>
+<td>{$row['name']}</td>
+<td>{$row['email']}</td>
+<td>{$row['course']}</td>
+</tr>";
+}
+mysqli_close($conn);
+?>
+</table>
+</body>
+</html>
+ 
+5.	OUTPUT
+
+6.	CONCLUSION
+The experiment successfully demonstrated how PHP serves as a bridge between the user interface and the database. By combining HTML forms with SQL queries, we implemented a complete workflow for persistent data storage and real-time display on the browser.
+ 
+Experiment 5
+
+
+Write a PHP program to create a second table as dept and insert the data in it. Display the data
+1.	Aim
+To write a PHP program to create a second table dept, insert data into it, and display data from both the first and second tables.
+2.	Objective
+•	To understand table creation using PHP & MySQL
+
+
+
+•	To insert and retrieve data from multiple tables
+
+
+
+•	To display database records using PHP
+3.	Theory
+PHP is a server-side scripting language used to interact with databases like MySQL. Using PHP, we can create tables, insert records, and fetch data dynamically using SQL queries.
+4.	Code
+<?php
+$conn = mysqli_connect("localhost", "root", "", "college"); if (!$conn) { die("Connection failed");
+}
+/* Create dept table */
+$sql1 = "CREATE TABLE IF NOT
+EXISTS dept ( dept_id INT PRIMARY KEY, dept_name VARCHAR(50)
+)";
+mysqli_query($conn, $sql1);
+/* Insert data */
+mysqli_query($conn, "INSERT INTO dept VALUES (1,'CSE'),(2,'IT')");
+ 
+/* Display data */
+$result = mysqli_query($conn, "SELECT * FROM dept"); echo "<h3>Department Table</h3>"; while ($row = mysqli_fetch_assoc($result)) { echo
+$row['dept_id']." ".$row['dept_name']."<br>";
+}
+?>
+5.	Output
+
+
+
+
+
+
+
+
+
+
+
+
+
+6.	Conclusion
+Thus, we successfully created a second table and displayed data from it using PHP and MySQL.
+ 
+EXPERIMENT 6
+
+
+1.	Aim: To create a database country and a table city, insert city data using an HTML form and PHP.
+2.	Objective
+•	To create database and table using PHP
+
+
+
+•	To collect user input via HTML form
+
+
+
+•	To store data in MySQL database
+3.	Theory
+HTML forms are used to collect data from users, and PHP processes this data to store it into a database using SQL queries.
+4.	Code HTML Code
+<form method="post">
+City Name: <input type="text" name="city"><br> Area: <input type="text" name="area"><br> Population: <input type="text" name="pop"><br>
+<input type="submit" name="submit">
+</form>
+
+
+Php Code
+<?php
+$conn = mysqli_connect("localhost","root","");
+
+
+mysqli_query($conn,"CREATE DATABASE IF NOT EXISTS country"); mysqli_select_db($conn,"country"); mysqli_query($conn,"CREATE TABLE IF NOT
+ 
+EXISTS city( cityname VARCHAR(30), area INT, population INT)"); if(isset($_POST['submit'])) {
+$c=$_POST['city'];
+$a=$_POST['area']; $p=$_POST['pop']; mysqli_query($conn,"INSERT INTO city VALUES('$c',$a,$p)"); echo "Data Inserted Successfully";
+}
+?>
+5.	Output
+
+
+
+
+
+6.	Conclusion
+The program successfully creates a database and inserts city details using PHP and HTML form.
+ 
+EXPERIMENT 7
+
+
+
+
+1.	Aim: To demonstrate the different phases of React Component Life Cycle.
+2.	Objective
+•	To understand lifecycle phases
+•	To learn mounting, updating, and unmounting phases
+3.	Theory
+React component lifecycle consists of:
+1.	Mounting
+2.	Updating
+3.	Unmounting
+
+Lifecycle methods help control component behavior.
+4.	Code import React, { Component } from "react";
+class LifeCycleDemo extends Component { constructor() { super(); this.state = { count: 0 };
+}
+componentDidMount() { console.log("Component Mounted");
+}
+componentDidUpdate() { console.log("Component Updated");
+}
+render() { return (
+<div>
+<h2>Count: {this.state.count}</h2>
+<button onClick={() => this.setState({ count: this.state.count + 1 })}> Increment
+</button>
+ 
+</div>
+);
+}
+}
+export default LifeCycleDemo;
+
+
+5.	Output
+
+
+
+
+
+
+6.	Conclusion
+The program demonstrates various lifecycle phases of a React component.
+ 
+EXPERIMENT 8
+
+
+
+
+To implement a React component that toggles between Light and Dark mode using useState.
+2.	Objective
+•	To use React Hooks
+
+
+
+•	To toggle UI themes dynamically 3.Theory useState hook allows functional components to manage state in React.
+4.	Code import React, { useState } from "react"; function ThemeToggle() { const [dark, setDark] = useState(false); return ( <div style={{ background: dark ? "black" : "white", color: dark ? "white" : "black", height: "100vh"
+}}>
+<button onClick={() => setDark(!dark)}> Toggle Mode
+</button>
+</div> );}
+export default ThemeToggle;
+ 
+5.	Output
+
+6.	Conclusion
+Light and dark mode toggling is successfully implemented using useState.
+ 
+EXPERIMENT 9
+
+
+
+
+To change document title dynamically when a counter updates.
+2.	Objective
+•	To use useEffect hook
+•	To modify browser title dynamically
+3.	Theory : useEffect hook performs side effects like updating the Document title.
+•
+4.	Code import React, { useState, useEffect } from "react"; function CounterTitle() { const [count, setCount] = useState(0); useEffect(() => { document.title = `You clicked ${count} times`;
+}, [count]); return (
+<button onClick={() => setCount(count + 1)}> Clicked {count}
+</button>
+);
+}
+export default CounterTitle;
+
+
+
+
+
+5.	Output
+ 
+ 
+
+6.	Conclusion
+Document title updates successfully using useEffect.
+ 
+EXPERIMENT 10
+
+
+
+
+To build a multilingual React application using useContext.
+2.	Objective
+•	To avoid prop drilling
+•	To manage global language state
+3.	Theory: useContext allows sharing data across components without passing props manually.
+4.	Code:
+import React, { createContext, useContext, useState } from "react"; const LangContext = createContext(); function App() { const [lang, setLang] = useState("en"); return (
+<LangContext.Provider value={lang}>
+<button onClick={() => setLang("en")}>English</button>
+<button onClick={() => setLang("hi")}>Hindi</button>
+<Message />
+</LangContext.Provider>
+);
+}
+function Message() { const lang = useContext(LangContext); return <h2>{lang === "en" ? "Hello" : "नमस्ते"}</h2>;
+}
+export default App;
+ 
+4.	Output
+
+5.	Conclusion
+The multilingual app works successfully using useContext.
